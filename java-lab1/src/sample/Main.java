@@ -70,8 +70,6 @@ public class Main extends Application {
         Label secondYCoordinate = new Label("y2");
         grid.add(secondYCoordinate, 0, 5);
 
-
-
         TextField firstXTextField = new TextField();
         Checker.addTextLimiter(firstXTextField, 4);
         grid.add(firstXTextField, 1, 2);
@@ -88,7 +86,6 @@ public class Main extends Application {
         Checker.addTextLimiter(secondYTextField, 4);
         grid.add(secondYTextField, 1, 5);
 
-
         Label lengthOfVectorLabel = new Label("Норма вектора: ");
         grid.add(lengthOfVectorLabel, 2, 2);
 
@@ -97,7 +94,6 @@ public class Main extends Application {
 
         Label projectionYLabel = new Label("Проекция на y: ");
         grid.add(projectionYLabel, 2, 4);
-
 
         Button clearButton = new Button("Очистить");
         Button countButton = new Button("Посчитать");
