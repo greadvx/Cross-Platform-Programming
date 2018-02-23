@@ -1,6 +1,5 @@
 package sample;
 
-import java.util.regex.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,6 +38,7 @@ public class Main extends Application {
      * Added 2 handlers to control buttons and text fields.
      * @param primaryStage default stage.
      * @return Nothing.*/
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Векторный калькулятор");
@@ -73,15 +73,19 @@ public class Main extends Application {
 
 
         TextField firstXTextField = new TextField();
+        Checker.addTextLimiter(firstXTextField, 4);
         grid.add(firstXTextField, 1, 2);
 
         TextField firstYTextField = new TextField();
+        Checker.addTextLimiter(firstYTextField, 4);
         grid.add(firstYTextField, 1, 3);
 
         TextField secondXTextField = new TextField();
+        Checker.addTextLimiter(secondXTextField, 4);
         grid.add(secondXTextField, 1, 4);
 
         TextField secondYTextField = new TextField();
+        Checker.addTextLimiter(secondYTextField, 4);
         grid.add(secondYTextField, 1, 5);
 
 
@@ -108,42 +112,22 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent pushEvent) {
 
-                Pattern digitsPattern = Pattern.compile("[0-9]+\\.?[0-9]*");
-                Matcher line1 = digitsPattern.matcher(firstXTextField.getText());
-                Matcher line2 = digitsPattern.matcher(firstYTextField.getText());
-                Matcher line3 = digitsPattern.matcher(secondXTextField.getText());
-                Matcher line4 = digitsPattern.matcher(secondYTextField.getText());
+                if (!Checker.doubleRegEx(firstXTextField) || !Checker.doubleRegEx(firstYTextField)
+                        || !Checker.doubleRegEx(secondXTextField) || !Checker.doubleRegEx(secondYTextField)) {
 
-                if (!line1.matches() | !line2.matches() | !line3.matches() | !line4.matches()){
-                    String reason;
-                    if (firstXTextField.getText().isEmpty() | firstYTextField.getText().isEmpty() |
-                            secondXTextField.getText().isEmpty() | secondYTextField.getText().isEmpty()){
-                        reason = "Есть невведенные поля.";
-                    } else {
-                        reason = "Введены не цифровые символы.";
-                    }
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Обнаружена ошибка!");
-                    alert.setHeaderText(("Ошибка ввода! " + reason));
-                    alert.setContentText("Внимание! В поля координат могут вводиться только цифровые значения " +
-                            "в десятичной системе счисления!");
+                    alert.setTitle("Информация об ошибке");
+                    alert.setHeaderText("Внимание! Обнаружена ошибка!");
+                    alert.setContentText("Некорректный ввод. Пожалуйста, повторите ввод.");
                     alert.showAndWait();
                     return;
                 }
-                double length = countingLengthOfVector(Double.parseDouble(firstXTextField.getText()),
-                        Double.parseDouble(firstYTextField.getText()),
-                        Double.parseDouble(secondXTextField.getText()),
-                        Double.parseDouble(secondYTextField.getText()));
+            Vector vector = new Vector(Double.parseDouble(firstXTextField.getText()), Double.parseDouble(firstYTextField.getText()),
+                    Double.parseDouble(secondXTextField.getText()), Double.parseDouble(secondYTextField.getText()));
 
-                lengthOfVectorLabel.setText("Норма вектора: " + length);
-
-                projectionXLabel.setText("Проекция на х: " +
-                        (Double.parseDouble(secondXTextField.getText())
-                        - Double.parseDouble(firstXTextField.getText())));
-
-                projectionYLabel.setText("Проекция на y: " +
-                        (Double.parseDouble(secondYTextField.getText())
-                                - Double.parseDouble(firstYTextField.getText())));
+                lengthOfVectorLabel.setText("Норма вектора: " + vector.countingLengthOfVector());
+                projectionXLabel.setText("Проекция на х: " + vector.projectionOnX());
+                projectionYLabel.setText("Проекция на y: " + vector.projectionOnY());
             }
         });
         clearButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -163,19 +147,7 @@ public class Main extends Application {
 
         primaryStage.show();
     }
-    /**
-     * This is a method that count length of vector
-     * @param firstX First X coordinate.
-     * @param firstY First Y coordinate.
-     * @param secondX Second X coordnate.
-     * @param secondY Second Y coordinate.
-     * @return double This returns arithmetical length of
-     * vector inputed by 2 pair of 2 dimensional coordinates.
-     * */
-    double countingLengthOfVector(double firstX, double firstY, double secondX, double secondY){
-        double result = Math.pow(secondX - firstX, 2) + Math.pow(secondY - firstY, 2);
-        return result;
-    }
+
     /**
      * This is a main method that called for appearing
      * main window of vector calculator application.
