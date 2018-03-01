@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="java_lab1.jar" size="8741" download="eager" />
+    <jar href="java_lab1.jar" size="8847" download="eager" />
   </resources>
   <jfx:javafx-desc  width="600" height="400" main-class="by.bsuir.Khamutouski.Main"  name="java-lab1" />
   <update check="background"/>

@@ -184,32 +184,33 @@ public class Main extends Application {
         countButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent pushEvent) {
+                try {
+                    if (!Checker.doubleRegEx(firstXTextField)
+                            || !Checker.doubleRegEx(firstYTextField)
+                            || !Checker.doubleRegEx(secondXTextField)
+                            || !Checker.doubleRegEx(secondYTextField)) {
+                        throw new Error("Введены неверные данные!");
+                    }
+                    Vector vector =
+                            new Vector(Double.parseDouble(firstXTextField.getText()),
+                                    Double.parseDouble(firstYTextField.getText()),
+                                    Double.parseDouble(secondXTextField.getText()),
+                                    Double.parseDouble(secondYTextField.getText()));
 
-                if (!Checker.doubleRegEx(firstXTextField)
-                        || !Checker.doubleRegEx(firstYTextField)
-                        || !Checker.doubleRegEx(secondXTextField)
-                        || !Checker.doubleRegEx(secondYTextField)) {
-
+                    lengthOfVectorLabel.setText("Норма вектора: "
+                            + vector.countingLengthOfVector());
+                    projectionXLabel.setText("Проекция на х: "
+                            + vector.projectionOnX());
+                    projectionYLabel.setText("Проекция на y: "
+                            + vector.projectionOnY());
+                } catch (Error errorName){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Информация об ошибке");
                     alert.setHeaderText("Внимание! Обнаружена ошибка!");
-                    alert.setContentText("Некорректный ввод. "
-                            + "Пожалуйста, повторите ввод.");
+                    alert.setContentText(errorName.getMessage()
+                            + " Пожалуйста, повторите ввод.");
                     alert.showAndWait();
-                    return;
                 }
-            Vector vector =
-                    new Vector(Double.parseDouble(firstXTextField.getText()),
-                    Double.parseDouble(firstYTextField.getText()),
-                    Double.parseDouble(secondXTextField.getText()),
-                    Double.parseDouble(secondYTextField.getText()));
-
-                lengthOfVectorLabel.setText("Норма вектора: "
-                        + vector.countingLengthOfVector());
-                projectionXLabel.setText("Проекция на х: "
-                        + vector.projectionOnX());
-                projectionYLabel.setText("Проекция на y: "
-                        + vector.projectionOnY());
             }
         });
         clearButton.setOnAction(new EventHandler<ActionEvent>() {
