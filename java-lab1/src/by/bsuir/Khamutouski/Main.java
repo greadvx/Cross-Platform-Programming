@@ -41,7 +41,7 @@ public class Main extends Application {
     /**
      * {@value #V_GAP} Vertical Quantity of cells.
      * */
-    static final int V_GAP = 5;
+    static final int V_GAP = 6;
     /**
      * {@value #PADDING_ROWS} Size of paddig rows.
      * */
@@ -77,6 +77,7 @@ public class Main extends Application {
      * {@value #FIRST_ROW} 1 row
      * in GridPane.
      * */
+
     static final int FIRST_ROW = 1;
     /**
      * {@value #SECOND_ROW} 2 row
@@ -180,6 +181,9 @@ public class Main extends Application {
         hBoxButtons.getChildren().add(clearButton);
         hBoxButtons.getChildren().add(countButton);
         grid.add(hBoxButtons, FIRST_COLUMN, SIXTH_ROW);
+
+        Label bsuirStyle = new Label("БГУИР – знания и стиль жизни.");
+        grid.add((bsuirStyle), 1, 7);
 
         countButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
