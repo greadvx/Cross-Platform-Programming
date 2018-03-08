@@ -1,16 +1,19 @@
 package by.bsuir.Khamutouski;
 
-public class Schoolar extends Leaner {
-    private final int MAXIMAL_FORM = 11;
-    private final int DEFAULT_FORM = 1;
+import java.util.Random;
+
+public class Scholar extends Leaner {
+    private final static int MAXIMAL_FORM = 11;
+    private final static int DEFAULT_FORM = 1;
+    public final int MAXIMAL_MARK = 10;
     private int form;
 
-    Schoolar(){
+    Scholar(){
         super();
         this.form = DEFAULT_FORM;
     }
 
-    Schoolar(String name, String surname){
+    Scholar(String name, String surname){
         super(name, surname);
         this.form = DEFAULT_FORM;
     }
@@ -21,6 +24,10 @@ public class Schoolar extends Leaner {
             leaveSchool();
         }else {
             form++;
+            Random randNumber = new Random();
+            for (int index = 0; index < COUNT_OF_MARKS; index++) {
+                this.marks[index] = randNumber.nextInt(MAXIMAL_MARK);
+            }
         }
 
     }
@@ -28,6 +35,6 @@ public class Schoolar extends Leaner {
         //вызывает метод отчислить учащегося из школы
     }
     public void passTheExam(){
-        //сдать экзамен
+        final boolean passed = University.conductExam(this);
     }
 }
