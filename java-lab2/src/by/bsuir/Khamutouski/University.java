@@ -4,6 +4,10 @@ public class University extends EstablishmentOfEducation {
     private final static double PASSING_SCORE = 8.7;
     private Student student;
 
+    University(final String nameOfUniversity){
+        super(nameOfUniversity);
+        this.student = null;
+    }
     public static boolean conductExam(final Scholar enrollPerson){
         double passingScore = 0;
         for (int mark : enrollPerson.marks) {
@@ -24,9 +28,8 @@ public class University extends EstablishmentOfEducation {
         this.student = null;
     }
 
-    public void enrollLeaner(final Scholar enrollPerson) {
-        this.student.setName(enrollPerson.getName());
-        this.student.setSurname(enrollPerson.getSurname());
+    public void enrollLeaner(final Student newStudent) {
+        this.student = newStudent;
     }
 }
 
