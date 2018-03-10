@@ -8,8 +8,12 @@ public class Scholar extends Leaner {
     public final int MAXIMAL_MARK = 10;
     private int form;
 
-    Scholar(String name, String surname){
-        super(name, surname);
+    Scholar(){
+        super();
+        this.form = DEFAULT_FORM;
+    }
+    Scholar(String name, String surname, String photo){
+        super(name, surname, photo);
         this.form = DEFAULT_FORM;
     }
 

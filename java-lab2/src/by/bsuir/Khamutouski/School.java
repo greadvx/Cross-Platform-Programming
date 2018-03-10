@@ -2,10 +2,13 @@ package by.bsuir.Khamutouski;
 
 public class School extends EstablishmentOfEducation {
     private Scholar pupil;
-
-    School(final String nameOfSchool, final Scholar newPupil) {
+    School(){
+        super();
+        this.pupil = null;
+    }
+    School(final String nameOfSchool) {
         super(nameOfSchool);
-        this.pupil = newPupil;
+        this.pupil = null;
     }
     @Override
     public void deductLeaner() {

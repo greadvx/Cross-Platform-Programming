@@ -8,7 +8,7 @@ public class Student extends Leaner {
 
     Student(Scholar scholarPerson) {
         super(scholarPerson.getName(),
-                scholarPerson.getSurname());
+                scholarPerson.getSurname(), "");
         this.course = MINIMAL_VALUE;
     }
     @Override
