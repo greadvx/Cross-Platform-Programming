@@ -25,15 +25,18 @@ public class Scholar extends Leaner {
             form++;
             Random randNumber = new Random();
             for (int index = 0; index < COUNT_OF_MARKS; index++) {
-                this.marks[index] = randNumber.nextInt(MAXIMAL_MARK);
+                this.setMark(index,randNumber.nextInt(MAXIMAL_MARK));
             }
         }
 
+    }
+    public int getForm() {
+        return this.form;
     }
     private void leaveSchool(){
         //вызывает метод отчислить учащегося из школы
     }
     public void passTheExam(){
-        final boolean passed = University.conductExam(this);
+       // final boolean passed = University.conductExam(this);
     }
 }

@@ -1,22 +1,16 @@
 package by.bsuir.Khamutouski;
 
 public class University extends EstablishmentOfEducation {
-    private final static double PASSING_SCORE = 8.7;
+    private final static double PASSING_SCORE = 4.7;
     private Student student;
 
     University(final String nameOfUniversity){
         super(nameOfUniversity);
         this.student = null;
     }
-    public static boolean conductExam(final Scholar enrollPerson){
-        double passingScore = 0;
-        for (int mark : enrollPerson.marks) {
-            passingScore += mark;
-        }
+    public boolean conductExam(final Scholar enrollPerson){
 
-        passingScore /= enrollPerson.marks.length;
-
-        if (passingScore >= PASSING_SCORE) {
+        if (enrollPerson.voutes() >= PASSING_SCORE) {
             return true;
         } else {
             return false;

@@ -8,11 +8,12 @@ public class Leaner {
     private final int DEFAULT_MARK = 0;
     private final String NONE = "none";
     private final String DEFAULT_PHOTO = "/Users/greadvx/Desktop/ScholarImageProfile.jpg";
+    private final String SPACE = " ";
 
     private String name;
     private String surname;
     private String photoPath;
-    public int marks[] = new int[COUNT_OF_MARKS];
+    private int marks[] = new int[COUNT_OF_MARKS];
 
     Leaner(){
         this.name = NONE;
@@ -48,10 +49,30 @@ public class Leaner {
     public void setPhotoPath(final String newPhotoPath) {
         this.photoPath = newPhotoPath;
     }
+    public String getPhotoPath() {
+        return this.photoPath;
+    }
     public void setMark(final int atIndex, final int mark){
         this.marks[atIndex] = mark;
     }
     public void studying() {
 
     }
+    public String getAllMarksValue() {
+        String arrayOfMarks = "";
+        for (int mark : this.marks) {
+            arrayOfMarks += Integer.toString(mark);
+            arrayOfMarks += SPACE;
+        }
+        return arrayOfMarks;
+    }
+    public double voutes() {
+        double sum = 0;
+        for (int mark : marks) {
+            sum += mark;
+        }
+        sum /= marks.length;
+        return sum;
+    }
+
 }

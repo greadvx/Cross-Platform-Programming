@@ -8,8 +8,10 @@ public class Main implements FormManager{
     private SchoolCreatingForm secondForm;
     private ControlPanelForm thirdForm;
 
-    private Scholar scholar;
-    private School school;
+    private Scholar scholar = null;
+    private School school = null;
+    private University university = null;
+    private Student student = null;
 
     public static void main(String args[]) {
 
@@ -43,10 +45,14 @@ public class Main implements FormManager{
         school.enrollLeaner(scholar);
         thirdForm.setVisible(!thirdForm.isVisible());
         thirdForm.attachSchool(school);
+        thirdForm.attachUniversity(university);
+        thirdForm.addElements();
     }
     @Override
     public void closeThirdForm() {
-        System.out.println("Сам иди нахуй");
+        student = thirdForm.referStudent();
+        thirdForm.setVisible(!thirdForm.isVisible());
+        System.exit(0);
     }
 
 }
