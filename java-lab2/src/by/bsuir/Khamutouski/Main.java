@@ -6,7 +6,7 @@ public class Main implements FormManager{
 
     private ScholarCreatingForm firstForm;
     private SchoolCreatingForm secondForm;
-
+    private ControlPanelForm thirdForm;
 
     private Scholar scholar;
     private School school;
@@ -26,6 +26,8 @@ public class Main implements FormManager{
         firstForm.setVisible(true);
         secondForm = new SchoolCreatingForm(this);
         secondForm.setVisible(false);
+        thirdForm = new ControlPanelForm(this);
+        thirdForm.setVisible(false);
 
     }
     @Override
@@ -39,10 +41,12 @@ public class Main implements FormManager{
         secondForm.setVisible(!secondForm.isVisible());
         school = secondForm.createSchool();
         school.enrollLeaner(scholar);
+        thirdForm.setVisible(!thirdForm.isVisible());
+        thirdForm.attachSchool(school);
     }
     @Override
     public void closeThirdForm() {
-
+        System.out.println("Сам иди нахуй");
     }
 
 }

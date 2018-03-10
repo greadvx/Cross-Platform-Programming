@@ -68,6 +68,7 @@ public class SchoolCreatingForm extends JFrame {
             try {
                 if (Checker.StringRegEx(inputedSchoolName)) {
                     this.nameOfSchool = inputedSchoolName.getText();
+                    manager.closeSecondForm();
                 } else {
                     throw new Error("Введены неверные данные!");
                 }
@@ -75,8 +76,6 @@ public class SchoolCreatingForm extends JFrame {
                 JOptionPane.showMessageDialog(null,
                         "Обнаружена ошибка: " + errorName.getMessage());
             }
-            this.nameOfSchool = inputedSchoolName.getText();
-            manager.closeSecondForm();
         });
 
         this.setContentPane(panel);

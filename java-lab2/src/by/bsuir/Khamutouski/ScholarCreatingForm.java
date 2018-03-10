@@ -108,6 +108,7 @@ public class ScholarCreatingForm extends JFrame {
                 if (Checker.StringRegEx(inputedSurname) & Checker.StringRegEx(inputedName)) {
                     this.name = inputedName.getText();
                     this.surname = inputedSurname.getText();
+                    manager.closeFirstForm();
                 } else {
                     throw new Error("Введены неверные данные!");
                 }
@@ -115,7 +116,6 @@ public class ScholarCreatingForm extends JFrame {
                 JOptionPane.showMessageDialog(null,
                         "Обнаружена ошибка: " + errorName.getMessage());
             }
-            manager.closeFirstForm();
         });
 
         this.setContentPane(panel);
