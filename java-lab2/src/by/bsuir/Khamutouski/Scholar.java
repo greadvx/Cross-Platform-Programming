@@ -1,42 +1,91 @@
 package by.bsuir.Khamutouski;
 
 import java.util.Random;
-
+/**
+ * <h1>Scholar</h1>
+ * <p>
+ * This class of application contains
+ * info about scholar
+ * </p>
+ *
+ * This class is used in hierarchy of
+ * inheritance.
+ *
+ * @author Yan Khamutouski
+ * @version 1.0
+ * @since 2018-03-11
+ *
+ * */
 public class Scholar extends Leaner {
-    private final static int MAXIMAL_FORM = 11;
-    private final static int DEFAULT_FORM = 1;
-    public final int MAXIMAL_MARK = 10;
+    /**
+     * {@value #MAXIMAL_FORM} Maximal form value.
+     * */
+    private static final int MAXIMAL_FORM = 11;
+    /**
+     * {@value #DEFAULT_FORM} Default form value.
+     * */
+    private static final int DEFAULT_FORM = 1;
+    /**
+     * {@value #MAXIMAL_MARK} Maximal mark value.
+     * */
+    public static final int MAXIMAL_MARK = 10;
+    /**
+     * Fill form – year of education.
+     * */
     private int form;
-
-    Scholar(){
+    /**
+     * Default constructor.
+     * */
+    Scholar() {
         super();
         this.form = DEFAULT_FORM;
     }
-    Scholar(String name, String surname, String photo){
+    /**
+     * Constructor with params.
+     * @param name name of scholar.
+     * @param surname surname of scholar.
+     * @param photo photo path.
+     *
+     * */
+    Scholar(final String name, final String surname, final String photo) {
         super(name, surname, photo);
         this.form = DEFAULT_FORM;
     }
-
+    /**
+     * Method studying.
+     * Its randomize value of marks.
+     * */
     @Override
-    public void studying(){
+    public void studying() {
         if (this.form == MAXIMAL_FORM) {
             leaveSchool();
-        }else {
+        } else {
             form++;
             Random randNumber = new Random();
             for (int index = 0; index < COUNT_OF_MARKS; index++) {
-                this.setMark(index,randNumber.nextInt(MAXIMAL_MARK));
+                this.setMark(index, randNumber.nextInt(MAXIMAL_MARK));
             }
         }
 
     }
+    /**
+     * Getter for the for of the scholar.
+     * @return int Form.
+     * */
     public int getForm() {
         return this.form;
     }
-    private void leaveSchool(){
-        //вызывает метод отчислить учащегося из школы
+    /**
+     * Method to leave the school.
+     * */
+    public void leaveSchool() {
+
     }
-    public void passTheExam(){
-       // final boolean passed = University.conductExam(this);
+    /**
+     * Method to pass exam, that
+     * calls conduct exam of class University.
+     * @return booleat passed or not.*/
+    public boolean passTheExam() {
+      return University.conductExam(this);
     }
 }

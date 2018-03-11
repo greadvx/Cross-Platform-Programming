@@ -1,12 +1,6 @@
 package by.bsuir.Khamutouski;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javax.swing.JTextField;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
@@ -37,7 +31,9 @@ public final class Checker {
      * @since 1.0
      */
     public static boolean StringRegEx(final JTextField inputedExpression) {
-        Pattern stringPattern = Pattern.compile("^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]+[a-zA-Zа-яА-Я']?$");
+        Pattern stringPattern =
+                Pattern.compile("^[a-zA-Zа-яА-Я'][a-zA-Zа-яА-Я-' ]"
+                        + "+[a-zA-Zа-яА-Я']?$");
         Matcher line = stringPattern.matcher(inputedExpression.getText());
         if (!line.matches()) {
             return false;
