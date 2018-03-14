@@ -178,6 +178,7 @@ public class ScholarCreatingForm extends JFrame {
                 case JFileChooser.APPROVE_OPTION:
                     File selectedFile = file.getSelectedFile();
                     this.photo = selectedFile.getAbsolutePath();
+                    this.photo += ".jpg";
                     break;
                 case JFileChooser.CANCEL_OPTION: break;
                 case JFileChooser.ERROR_OPTION: this.photo = ""; break;

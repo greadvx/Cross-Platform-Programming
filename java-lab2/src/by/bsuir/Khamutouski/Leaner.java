@@ -83,6 +83,8 @@ public class Leaner {
         }
         if (photo == "") {
             this.photoPath = DEFAULT_PHOTO;
+        } else {
+            this.photoPath = photo;
         }
     }
     /**
