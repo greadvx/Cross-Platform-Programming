@@ -6,7 +6,7 @@ package by.bsuir.Khamutouski;
  * store info about leaner.
  * </p>
  *
- * This class is used in hierarchy of
+ * This abstract class is used in hierarchy of
  * inheritance.
  *
  * @author Yan Khamutouski
@@ -14,7 +14,7 @@ package by.bsuir.Khamutouski;
  * @since 2018-03-11
  *
  * */
-public class Leaner {
+public abstract class Leaner {
     /**
      * {@value #COUNT_OF_MARKS} Contains maximal
      * count of marks.
@@ -138,11 +138,9 @@ public class Leaner {
         this.marks[atIndex] = mark;
     }
     /**
-     * Method studing.
+     * abstract method studing.
      * */
-    public void studying() {
-
-    }
+    public abstract void studying();
     /**
      * Getter for the marks
      * to String.
@@ -156,18 +154,12 @@ public class Leaner {
         }
         return arrayOfMarks;
     }
-    /**
-     * Making arithmetical operation
-     * with marks to pass the exam.
-     * @return double summary.
-     * */
-    public double voutes() {
+    public double voutesOfLeaner() {
         double sum = 0;
-        for (int mark : marks) {
+        for (int mark : this.marks) {
             sum += mark;
         }
-        sum /= marks.length;
+        sum /= this.marks.length;
         return sum;
     }
-
 }

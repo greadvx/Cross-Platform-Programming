@@ -21,4 +21,8 @@ public interface FormManager {
      * Method close third GUI form.
      * */
     void closeThirdForm();
+    /**
+     * Method close fourth GUI form.
+     * */
+    void closeFourthForm();
 }

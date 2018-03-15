@@ -1,4 +1,7 @@
 package by.bsuir.Khamutouski;
+
+import java.util.Random;
+
 /**
  * <h1>Student</h1>
  * <p>
@@ -26,16 +29,23 @@ public class Student extends Leaner {
      * */
     private static final int MAXIMAL_VALUE = 4;
     /**
-     * Field course.
+     * {@value #MAXIMAL_MARK} Maximal mark value.
      * */
+    public static final int MAXIMAL_MARK = 10;
+    /**
+     * {@value #DEFAULT_PHOTO} Default path.
+     * */
+    private static final String DEFAULT_PHOTO = "/Users/greadvx/"
+            + "Desktop/StudentImageProfile.jpg";
     private int course;
+    private University university;
     /**
      * Default constructor with params.
      * @param scholarPerson a scholar.
      * */
     Student(final Scholar scholarPerson) {
         super(scholarPerson.getName(),
-                scholarPerson.getSurname(), "");
+                scholarPerson.getSurname(), DEFAULT_PHOTO);
         this.course = MINIMAL_VALUE;
     }
     /**
@@ -46,6 +56,22 @@ public class Student extends Leaner {
         if (this.course < MAXIMAL_VALUE) {
             this.course++;
         }
+        Random randNumber = new Random();
+        for (int index = 0; index < COUNT_OF_MARKS; index++) {
+            this.setMark(index, randNumber.nextInt(MAXIMAL_MARK));
+        }
     }
-
+    /**
+     * Getter for course.
+     * */
+    public int getCourse() {
+        return this.course;
+    }
+    /**
+     * Method to attach university.
+     * @param thisUniversity - university.
+     * */
+    public void attachUniversity(final University thisUniversity) {
+        this.university = thisUniversity;
+    }
 }

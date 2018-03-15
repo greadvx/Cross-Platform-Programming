@@ -34,11 +34,16 @@ public class Scholar extends Leaner {
      * */
     private int form;
     /**
+     * Field school.
+     * */
+    private School school;
+    /**
      * Default constructor.
      * */
     Scholar() {
         super();
         this.form = DEFAULT_FORM;
+        this.school = null;
     }
     /**
      * Constructor with params.
@@ -52,13 +57,19 @@ public class Scholar extends Leaner {
         this.form = DEFAULT_FORM;
     }
     /**
+     * Method to attach school.
+     * @param thisSchool - school to attach.
+     * */
+    public void attachSchool(final School thisSchool) {
+        this.school = thisSchool;
+    }
+    /**
      * Method studying.
      * Its randomize value of marks.
      * */
-    @Override
     public void studying() {
         if (this.form == MAXIMAL_FORM) {
-            leaveSchool();
+            this.leaveSchool();
         } else {
             form++;
             Random randNumber = new Random();
@@ -66,7 +77,6 @@ public class Scholar extends Leaner {
                 this.setMark(index, randNumber.nextInt(MAXIMAL_MARK));
             }
         }
-
     }
     /**
      * Getter for the for of the scholar.
@@ -79,13 +89,14 @@ public class Scholar extends Leaner {
      * Method to leave the school.
      * */
     public void leaveSchool() {
-
+        school.deductLeaner(this);
     }
     /**
      * Method to pass exam, that
      * calls conduct exam of class University.
-     * @return booleat passed or not.*/
-    public boolean passTheExam() {
-      return University.conductExam(this);
+     * @return booleat passed or not.
+     * */
+    public boolean passTheExam(University university) {
+      return university.conductExam(this);
     }
 }

@@ -39,7 +39,12 @@ public class Main implements FormManager {
      * Form on the screen to create ControlPanel
      * of the scholar.
      * */
-    private ControlPanelForm thirdForm;
+    private ScholarControlPanelForm thirdForm;
+    /**
+     * Form on the screen to create ControlPanel
+     * of the student.
+     * */
+    private StudentControlPanelForm fourthForm;
     /**
      * Scholar created for connect it in different
      * forms of this application.
@@ -92,8 +97,10 @@ public class Main implements FormManager {
         firstForm.setVisible(true);
         secondForm = new SchoolCreatingForm(this);
         secondForm.setVisible(false);
-        thirdForm = new ControlPanelForm(this);
+        thirdForm = new ScholarControlPanelForm(this);
         thirdForm.setVisible(false);
+        fourthForm = new StudentControlPanelForm(this);
+        fourthForm.setVisible(false);
 
     }
     /**This method contains code written to change screens
@@ -115,19 +122,35 @@ public class Main implements FormManager {
         secondForm.setVisible(!secondForm.isVisible());
         school = secondForm.createSchool();
         school.enrollLeaner(scholar);
+        scholar.attachSchool(school);
         thirdForm.setVisible(!thirdForm.isVisible());
         thirdForm.attachSchool(school);
         thirdForm.attachUniversity(university);
+        thirdForm.attachSchoolar(scholar);
         thirdForm.addElements();
     }
-    /**This method contains code written to change screens
+    /**
+     * This method contains code written to change screens
      * in this application.
-     * It closes a third form and exit from the application with code 0.
+     * It closes a third form.
      * */
     @Override
     public void closeThirdForm() {
+        university = thirdForm.referUniversity();
         student = thirdForm.referStudent();
         thirdForm.setVisible(!thirdForm.isVisible());
+        fourthForm.setVisible(!fourthForm.isVisible());
+        fourthForm.attachUniversity(university);
+        fourthForm.attachStudent(student);
+        fourthForm.addElements();
+    }
+    /**
+     * This method contains code written to change screens
+     * in this application.
+     * It closes a fourth form and exit from the application with code 0.
+     * */
+    @Override
+    public void closeFourthForm() {
         System.exit(EXIT_SUCCESS);
     }
 

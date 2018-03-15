@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 /**
- * <h1>Panel to control scholar</h1>
+ * <h1>Panel to control student</h1>
  * <p>
  * This is a class of application
  * that create a GUI form Control Panel.
@@ -17,7 +17,8 @@ import java.io.IOException;
  * @since 2018-03-11
  *
  * */
-public class ControlPanelForm extends JFrame {
+
+public class StudentControlPanelForm extends JFrame {
     /**
      * {@value #NAME_OF_FORM} Contains
      * name of form.
@@ -29,10 +30,10 @@ public class ControlPanelForm extends JFrame {
      * */
     private static final String STUDY_BUTTON = "Учиться";
     /**
-     * {@value #EXAM_BUTTON} Contains name
+     * {@value #EXIT_BUTTON} Contains name
      * of button performed to conduct exam.
      * */
-    private static final String EXAM_BUTTON = "Сдать экзамен";
+    private static final String EXIT_BUTTON = "Выход";
     /**
      * {@value #SURNAME} Contains surname
      * constant.
@@ -44,35 +45,31 @@ public class ControlPanelForm extends JFrame {
      * */
     private static final String NAME = "Имя: ";
     /**
-     * {@value #SCHOOL} Contains school name
+     * {@value #UNIVERSITY} Contains school name
      * constant.
      * */
-    private static final String SCHOOL = "Школа: ";
+    private static final String UNIVERSITY = "Университет: ";
     /**
-     * {@value #FORM} Contains number of form
+     * {@value #COURSE} Contains number of form
      * constant.
      * */
-    private static final String FORM = "Год обучения: ";
+    private static final String COURSE = "Год обучения: ";
     /**
      * {@value #MARKS} Contains text of marks
      * constant.
      * */
     private static final String MARKS = "Оценки: ";
+
     /**
-     * {@value #UNIVERSITY} Contains text of university
-     * constant.
-     * */
-    private static final String UNIVERSITY = "БГУИР";
-    /**
-     * {@value #FINISHED_SCHOOL} Contains max value of
+     * {@value #FINISHED_UNIVERSITY} Contains max value of
      * the form.
      * */
-    private static final int FINISHED_SCHOOL = 11;
+    private static final int FINISHED_UNIVERSITY = 4;
     /**
      * {@value #BAD_EXIT} Code of
      * unsuccessful exit operation.
      * */
-    private static final int BAD_EXIT = 33;
+    private static final int BAD_EXIT = 10;
     /**
      * {@value #WIDTH} Size of form(width).
      * */
@@ -131,20 +128,11 @@ public class ControlPanelForm extends JFrame {
      * */
     private FormManager manager;
     /**
-     * School is created for communicate
-     * with other forms in the app.
-     * */
-    private School school = null;
-    /**
      * University is created if the scholar pass
      * successful exams.
      * */
     private University university = null;
-    /**
-     * Scholar is used to teach it, and to check
-     * exam result.
-     * */
-    private Scholar thisScholar = null;
+
     /**
      * Student is created when scholar pass the
      * exams.
@@ -154,7 +142,7 @@ public class ControlPanelForm extends JFrame {
      * Default constructor.
      * @param manager used to change forms in the application
      * */
-    public ControlPanelForm(final FormManager manager) {
+    public StudentControlPanelForm(final FormManager manager) {
         this.manager = manager;
         this.setName(NAME_OF_FORM);
         this.setSize(WIDTH, HEIGHT);
@@ -177,13 +165,13 @@ public class ControlPanelForm extends JFrame {
 
         File f;
         Image img = null;
-        f = new File(school.getPhotoPath());
+        f = new File(student.getPhotoPath());
         try {
             img = ImageIO.read(f);
         } catch (IOException ioe) {
             JOptionPane.showConfirmDialog(null, ioe.toString(),
                     "Error!", JOptionPane.PLAIN_MESSAGE);
-            System.exit(0);
+            System.exit(ZERO);
         }
         params.weightx = ZERO;
         params.weighty = ZERO;
@@ -201,61 +189,47 @@ public class ControlPanelForm extends JFrame {
         params.gridx = ZERO;
         params.gridy = ONE;
         surnameLabel.setText(SURNAME
-                + this.school.surnameOfScholar());
+                + this.student.getSurname());
         panel.add(surnameLabel, params);
 
         JLabel nameLabel = new JLabel();
         params.gridx = ZERO;
         params.gridy = TWO;
         nameLabel.setText(NAME
-                + this.school.nameOfScholar());
+                + this.student.getName());
         panel.add(nameLabel, params);
 
 
-        JLabel schoolLabel = new JLabel();
+        JLabel universityLabel = new JLabel();
         params.gridx = ZERO;
         params.gridy = THREE;
-        schoolLabel.setText(SCHOOL
-                + this.school.nameOfSchool());
-        panel.add(schoolLabel, params);
+        universityLabel.setText(UNIVERSITY
+                + this.university.getNameOfUniversity());
+        panel.add(universityLabel, params);
 
-        JLabel formLabel = new JLabel();
+        JLabel courseLabel = new JLabel();
         params.gridx = ZERO;
         params.gridy = FOUR;
-        formLabel.setText(FORM
-                + this.school.formOfScholar());
-        panel.add(formLabel, params);
+        courseLabel.setText(COURSE
+                + this.student.getCourse());
+        panel.add(courseLabel, params);
 
         JLabel marksLabel = new JLabel();
         params.gridx = ZERO;
         params.gridy = FIVE;
         marksLabel.setText(MARKS
-                + this.school.marksOfScholar());
+                + this.university.marksOfStudent(student));
         panel.add(marksLabel, params);
 
-        JButton tryExamination = new JButton(EXAM_BUTTON);
-        panel.add(tryExamination);
+        JButton exitButton = new JButton(EXIT_BUTTON);
+        panel.add(exitButton);
         params.gridx = THREE;
         params.gridy = FIVE;
-        tryExamination.setEnabled(false);
-        panel.add(tryExamination, params);
+        exitButton.setEnabled(false);
+        panel.add(exitButton, params);
 
-        tryExamination.addActionListener(action -> {
-            university = new University(UNIVERSITY);
-            boolean result = university.conductExam(thisScholar);
-            if (result) {
-                student = new Student(thisScholar);
-                thisScholar.leaveSchool();
-                thisScholar = null;
-                manager.closeThirdForm();
-           } else {
-                JOptionPane.showMessageDialog(null,
-                        "Школьник: " + thisScholar.getName() + SPACE
-                                + thisScholar.getSurname()
-                                + " не справился с экзаменом.");
-                System.exit(BAD_EXIT);
-            }
-
+        exitButton.addActionListener(action -> {
+            manager.closeFourthForm();
         });
 
         JButton studyButton = new JButton(STUDY_BUTTON);
@@ -265,16 +239,14 @@ public class ControlPanelForm extends JFrame {
         panel.add(studyButton, params);
 
         studyButton.addActionListener(action -> {
-            this.school.teachPupil();
+            this.student.studying();
             marksLabel.setText(MARKS
-                    + this.school.marksOfScholar());
-            formLabel.setText(FORM
-                    + this.school.formOfScholar());
-            if (this.school.formOfScholar() == FINISHED_SCHOOL) {
-                tryExamination.setEnabled(true);
+                    + this.university.marksOfStudent(student));
+            courseLabel.setText(COURSE
+                    + this.student.getCourse());
+            if (this.student.getCourse() == FINISHED_UNIVERSITY) {
+                exitButton.setEnabled(true);
                 studyButton.setEnabled(false);
-                thisScholar = this.school.thisPupil();
-                this.school.deductLeaner();
             }
         });
 
@@ -282,25 +254,17 @@ public class ControlPanelForm extends JFrame {
         this.setVisible(SET_VISIBLE);
     }
     /**
-     * Method to attach the school to this form.
-     * @param newSchool School to attach.
+     * Method to attach university.
+     * @param thisUniversity - University.
      * */
-    public void attachSchool(final School newSchool) {
-        this.school = newSchool;
+    public void attachUniversity(final University thisUniversity) {
+        this.university = thisUniversity;
     }
     /**
-     * Method to attach the university to this form.
-     * @param newUniversity University to attach.
+     * Method to attach student.
+     * @param thisStudent  - Student.
      * */
-    public void attachUniversity(final University newUniversity) {
-        this.university = newUniversity;
-    }
-    /**
-     * Method to attach the student to the global
-     * main method.
-     * @return Student.
-     * */
-    public Student referStudent() {
-        return this.student;
+    public void attachStudent(final Student thisStudent) {
+        this.student = thisStudent;
     }
 }
