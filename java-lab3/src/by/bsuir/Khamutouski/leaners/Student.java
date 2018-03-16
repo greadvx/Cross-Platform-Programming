@@ -14,8 +14,8 @@ import by.bsuir.Khamutouski.establishments.University;
  * inheritance.
  *
  * @author Yan Khamutouski
- * @version 1.0
- * @since 2018-03-11
+ * @version 2.0
+ * @since 2018-03-16
  *
  * */
 public class Student extends Leaner {
@@ -36,7 +36,7 @@ public class Student extends Leaner {
     /**
      * {@value #IQ_COEFFICIENT} Value to upscale iq.
      * */
-    public static final int IQ_COEFFICIENT = 10;
+    public static final int IQ_COEFFICIENT = 5;
     /**
      * {@value #DEFAULT_PHOTO} Default path.
      * */
@@ -58,6 +58,19 @@ public class Student extends Leaner {
         super(scholarPerson.getName(),
                 scholarPerson.getSurname(), DEFAULT_PHOTO);
         this.course = MINIMAL_VALUE;
+        this.iq = scholarPerson.iq;
+    }
+    /**
+     * Constructor of copying.
+     * @param anotherStudent - Student.
+     * */
+    public Student(final Student anotherStudent) {
+        super(anotherStudent.getName(), anotherStudent.getSurname(),
+                anotherStudent.getPhotoPath());
+        this.course = anotherStudent.getCourse();
+        this.iq = anotherStudent.iq;
+        this.university = new University(anotherStudent.getUniversity());
+
     }
     /**
      * Method that perform studying.
@@ -74,6 +87,12 @@ public class Student extends Leaner {
         }
     }
     /**
+     * Method increase intellect.
+     * */
+    public void increaseIntellect() {
+        this.iq += MINIMAL_VALUE;
+    }
+    /**
      * Getter for course.
      * */
     public int getCourse() {
@@ -85,5 +104,12 @@ public class Student extends Leaner {
      * */
     public void attachUniversity(final University thisUniversity) {
         this.university = thisUniversity;
+    }
+
+    /**
+     * Getter for copying.
+     * */
+    public University getUniversity() {
+        return this.university;
     }
 }

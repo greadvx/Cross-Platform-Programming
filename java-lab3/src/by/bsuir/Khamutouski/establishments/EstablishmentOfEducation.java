@@ -11,8 +11,8 @@ package by.bsuir.Khamutouski.establishments;
  * inheritance.
  *
  * @author Yan Khamutouski
- * @version 1.0
- * @since 2018-03-11
+ * @version 2.0
+ * @since 2018-03-16
  *
  * */
 public abstract class EstablishmentOfEducation {

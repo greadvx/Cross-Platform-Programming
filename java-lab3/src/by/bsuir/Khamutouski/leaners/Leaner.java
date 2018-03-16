@@ -10,8 +10,8 @@ package by.bsuir.Khamutouski.leaners;
  * inheritance.
  *
  * @author Yan Khamutouski
- * @version 1.0
- * @since 2018-03-11
+ * @version 2.0
+ * @since 2018-03-16
  *
  * */
 public abstract class Leaner {
@@ -35,7 +35,7 @@ public abstract class Leaner {
      * the photo of profile.
      * */
     private static final String DEFAULT_PHOTO = "/Users/greadvx/"
-            + "Desktop/ScholarImageProfile.jpg";
+            + "Desktop/KindergartenImageProfile.jpg";
     /**
      * {@value #SPACE} Space between lines.
      * */
@@ -99,6 +99,7 @@ public abstract class Leaner {
         }
         this.iq = IQ_BASE;
     }
+
     /**
      * Setter for the name.
      * @param newName name.
@@ -166,7 +167,18 @@ public abstract class Leaner {
         }
         return arrayOfMarks;
     }
-    public double voutesOfLeaner() {
+    /**
+     * Getter of IQ.
+     * @return String _ IQ.
+     * */
+    public String getIQValue() {
+        return Integer.toString(this.iq);
+    }
+    /**
+     * Getter of votes of leaner.
+     * @return double - vote to pass.
+     * */
+    public double votesOfLeaner() {
         double sum = 0;
         for (int mark : this.marks) {
             sum += mark;

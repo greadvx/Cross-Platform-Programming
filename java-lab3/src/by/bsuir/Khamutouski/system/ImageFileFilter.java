@@ -12,8 +12,8 @@ import java.io.File;
  * than can be used as photo profile.
  *
  * @author Yan Khamutouski
- * @version 1.0
- * @since 2018-03-11
+ * @version 2.0
+ * @since 2018-03-16
  *
  * */
 public class ImageFileFilter extends FileFilter {

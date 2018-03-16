@@ -14,8 +14,8 @@ import by.bsuir.Khamutouski.establishments.University;
  * inheritance.
  *
  * @author Yan Khamutouski
- * @version 1.0
- * @since 2018-03-11
+ * @version 2.0
+ * @since 2018-03-16
  *
  * */
 public class Scholar extends Leaner {
@@ -31,6 +31,10 @@ public class Scholar extends Leaner {
      * {@value #MAXIMAL_MARK} Maximal mark value.
      * */
     public static final int MAXIMAL_MARK = 10;
+
+
+    private static final String PHOTO_PATH = "/Users/greadvx/"
+            + "Desktop/ScholarImageProfile.jpg";
     /**
      * Field form – year of education.
      * */
@@ -42,7 +46,7 @@ public class Scholar extends Leaner {
     /**
      * Default constructor.
      * */
-    Scholar() {
+    public Scholar() {
         super();
         this.form = DEFAULT_FORM;
         this.school = null;
@@ -54,10 +58,31 @@ public class Scholar extends Leaner {
      * @param photo photo path.
      *
      * */
-    Scholar(final String name, final String surname,
+    public Scholar(final String name, final String surname,
             final String photo) {
         super(name, surname, photo);
         this.form = DEFAULT_FORM;
+        this.school = null;
+        this.iq = DEFAULT_FORM;
+    }
+    /**
+     * Constructor of scholar.
+     * @param kinder - kinder.
+     * */
+    public Scholar(final Kinder kinder) {
+        super(kinder.getName(), kinder.getSurname(), PHOTO_PATH);
+        this.iq = kinder.iq;
+    }
+    /**
+     * Constructor of copying.
+     * @param anotherScholar - Scholar.
+     * */
+    public Scholar(final Scholar anotherScholar) {
+        super(anotherScholar.getName(), anotherScholar.getSurname(),
+                anotherScholar.getPhotoPath());
+        this.iq = anotherScholar.iq;
+        this.school = new School(anotherScholar.referSchool());
+        this.form = anotherScholar.getForm();
     }
     /**
      * Method to attach school.
@@ -103,5 +128,11 @@ public class Scholar extends Leaner {
      * */
     public boolean passTheExam(University university) {
         return university.conductExam(this);
+    }
+    /**
+     * Getter for copying
+     * */
+    public School referSchool() {
+        return this.school;
     }
 }

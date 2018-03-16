@@ -2,6 +2,7 @@ package by.bsuir.Khamutouski.establishments;
 
 import java.util.ArrayList;
 import by.bsuir.Khamutouski.leaners.Scholar;
+
 /**
  * <h1>School</h1>
  * <p>
@@ -13,14 +14,23 @@ import by.bsuir.Khamutouski.leaners.Scholar;
  * inheritance.
  *
  * @author Yan Khamutouski
- * @version 1.0
- * @since 2018-03-11
+ * @version 2.0
+ * @since 2018-03-16
  *
  * */
 public class School extends EstablishmentOfEducation {
-
+    /**
+     * {@value #NO} Code of
+     * not success exit operation.
+     * */
     private static final int NO = -1;
+    /**
+     * {@value #DEFAULT_NAME} Default name.
+     * */
     private static final String DEFAULT_NAME = "none";
+    /**
+     * Private field Name of School.
+     * */
     private String nameOfSchool;
     /**
      * Field Scholar.
@@ -30,7 +40,7 @@ public class School extends EstablishmentOfEducation {
     /**
      * Default constructor.
      */
-    School() {
+    public School() {
         super();
         this.pupils = new ArrayList<>();
         this.nameOfSchool = DEFAULT_NAME;
@@ -40,10 +50,17 @@ public class School extends EstablishmentOfEducation {
      * Constructor with params.
      * @param newNameOfSchool String – name.
      */
-    School(final String newNameOfSchool) {
+    public School(final String newNameOfSchool) {
         super();
         this.pupils = new ArrayList<>();
         this.nameOfSchool = newNameOfSchool;
+    }
+    public School(final School anotherSchool) {
+        super();
+        if (anotherSchool != null) {
+            this.pupils = new ArrayList<>(anotherSchool.getPupils());
+            this.nameOfSchool = anotherSchool.getNameOfSchool();
+        }
     }
     /**
      * Getter of photoPath.
@@ -113,5 +130,12 @@ public class School extends EstablishmentOfEducation {
             }
         }
         return NO;
+    }
+    /**
+     * Getter for copying.
+     * @return ArrayList - of pupils.
+     * */
+    public ArrayList<Scholar> getPupils() {
+        return this.pupils;
     }
 }

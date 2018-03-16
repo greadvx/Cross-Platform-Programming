@@ -16,8 +16,8 @@ import java.util.ArrayList;
  * inheritance.
  *
  * @author Yan Khamutouski
- * @version 1.0
- * @since 2018-03-11
+ * @version 2.0
+ * @since 2018-03-16
  *
  * */
 public class University extends EstablishmentOfEducation {
@@ -25,7 +25,7 @@ public class University extends EstablishmentOfEducation {
      * {@value #PASSING_SCORE} Code of
      * success exit operation.
      * */
-    private static final double PASSING_SCORE = 1.7;
+    private static final double PASSING_SCORE = 4.1;
     /**
      * {@value #NO} Code of
      * not success exit operation.
@@ -62,16 +62,27 @@ public class University extends EstablishmentOfEducation {
         this.students = new ArrayList<>();
     }
     /**
+     * Constructor of copying.
+     * */
+    public University(final University anotherUniversity) {
+        super();
+        if (anotherUniversity != null) {
+            this.nameOfUniversity =
+                    anotherUniversity.getNameOfUniversity();
+            this.students = new ArrayList<>(anotherUniversity.getStudents());
+        }
+    }
+    /**
      * Method to conduct exam.
      * @param enrollPerson Scholar.
      * @return boolean – result of exam.
      * */
     public boolean conductExam(final Scholar enrollPerson) {
 
-        if (enrollPerson.voutesOfLeaner() >= PASSING_SCORE) {
-            Student newStudent = new Student(enrollPerson);
-            this.students.add(newStudent);
-            newStudent.attachUniversity(this);
+        if (enrollPerson.votesOfLeaner() >= PASSING_SCORE) {
+            //Student newStudent = new Student(enrollPerson);
+            //this.students.add(newStudent);
+            //newStudent.attachUniversity(this);
             return true;
         } else {
             return false;
@@ -134,5 +145,36 @@ public class University extends EstablishmentOfEducation {
     public String getNameOfUniversity() {
         return this.nameOfUniversity;
     }
+    /**
+     * Getter for copying.
+     * */
+    public ArrayList<Student> getStudents() {
+        return this.students;
+    }
+    /**
+     * Method conduct Lection.
+     * */
+    public void conductLection() {
+        for (Student person : students) {
+            person.increaseIntellect();
+        }
+    }
+    /**
+     * Method conduct Seminar.
+     * */
+    public void conductSeminar() {
+        for (Student person : students) {
+            person.increaseIntellect();
+        }
+    }
+    /**
+     * Method conduct Labwork.
+     * */
+    public void conductLabwork() {
+        for (Student person : students) {
+            person.increaseIntellect();
+        }
+    }
+
 }
 

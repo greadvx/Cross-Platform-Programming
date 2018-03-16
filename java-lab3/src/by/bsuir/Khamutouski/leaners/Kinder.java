@@ -1,14 +1,30 @@
 package by.bsuir.Khamutouski.leaners;
 
 import by.bsuir.Khamutouski.establishments.Kindergarten;
-
+/**
+ * <h1>Kinder</h1>
+ * <p>
+ * This class is used to
+ * store info about kinder.
+ * </p>
+ *
+ * This class is used in hierarchy of
+ * inheritance.
+ *
+ * @author Yan Khamutouski
+ * @version 2.0
+ * @since 2018-03-16
+ *
+ * */
 public class Kinder extends Leaner {
-
+    /**
+     * {@value #BEGINNERS_INDEX} Begin index.
+     * */
     private static final int BEGINNERS_INDEX = 0;
     /**
      * Array of Strings to change name of group.
      * */
-    private static final String[] GROUP_LIST = {"Ясли", "Младшая",
+    private static final String[] GROUP_LIST = {"Ясли   ", "Младшая",
             "Средняя", "Старшая"};
     /**
      * {@value #NONE} None value.
@@ -22,7 +38,7 @@ public class Kinder extends Leaner {
      * {@value #MAXIMAL_YEAR} Maximal value of
      * field index.
      * */
-    private static final int MAXIMAL_YEAR = 4;
+    private static final int MAXIMAL_YEAR = 3;
     /**
      * Private field index - for navigation in
      * GROUP_LIST.
@@ -42,6 +58,9 @@ public class Kinder extends Leaner {
     public Kinder() {
         super();
         this.group = NONE;
+        this.index = BEGINNERS_INDEX;
+        this.iq = BEGINNERS_INDEX;
+        this.kindergarten = new Kindergarten();
     }
     /**
      * Constructor with params.
@@ -56,6 +75,18 @@ public class Kinder extends Leaner {
         this.group = GROUP_LIST[index];
     }
     /**
+     * Constructor of copying.
+     * @param anotherKinder - Kinder.
+     * */
+    public Kinder(final Kinder anotherKinder) {
+        super(anotherKinder.getName(), anotherKinder.getSurname(),
+                anotherKinder.getPhotoPath());
+        this.group = anotherKinder.getGroupString();
+        this.iq = anotherKinder.iq;
+        this.index = anotherKinder.getGroup();
+        this.kindergarten = new Kindergarten(anotherKinder.getKindergarten());
+    }
+    /**
      * Method studying.
      * It increases group and iq.
      * */
@@ -64,14 +95,21 @@ public class Kinder extends Leaner {
         if (index < MAXIMAL_YEAR) {
             index++;
             this.iq += IQ_INCREASE;
+            this.group = GROUP_LIST[index];
         }
-        this.group = GROUP_LIST[index];
     }
     /**
      * Getter getGroup.
-     * @return String - group name.
+     * @return Int - group num.
      * */
-    public String getGroup() {
+    public int getGroup() {
+        return this.index;
+    }
+    /**
+     * Getter getGroupString.
+     * @return String - name of group.
+     * */
+    public String getGroupString() {
         return this.group;
     }
     public void leaveKindergarten() {
@@ -82,5 +120,12 @@ public class Kinder extends Leaner {
      * */
     public void attachNusery(final Kindergarten kindergartenName) {
         this.kindergarten = kindergartenName;
+    }
+    /**
+     * Getter for copying.
+     * @return Kindergarten.
+     * */
+    public Kindergarten getKindergarten() {
+        return this.kindergarten;
     }
 }
