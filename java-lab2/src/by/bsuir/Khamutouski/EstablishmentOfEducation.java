@@ -44,5 +44,4 @@ public abstract class EstablishmentOfEducation {
      * establishment of education.
      * @return String its name.
      */
-
 }
