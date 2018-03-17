@@ -100,13 +100,18 @@ public class Scholar extends Leaner {
         if (this.form == MAXIMAL_FORM) {
             this.leaveSchool();
         } else {
-            this.form++;
             this.iq++;
             Random randNumber = new Random();
             for (int index = 0; index < COUNT_OF_MARKS; index++) {
                 this.setMark(index, randNumber.nextInt(MAXIMAL_MARK));
             }
         }
+    }
+    /**
+     * Method to increase year.
+     * */
+    public void increaseYear() {
+        this.form++;
     }
     /**
      * Getter for the for of the scholar.
@@ -124,6 +129,7 @@ public class Scholar extends Leaner {
     /**
      * Method to pass exam, that
      * calls conduct exam of class University.
+     * @param university - University.
      * @return booleat passed or not.
      * */
     public boolean passTheExam(University university) {
@@ -131,6 +137,7 @@ public class Scholar extends Leaner {
     }
     /**
      * Getter for copying
+     * @return School.
      * */
     public School referSchool() {
         return this.school;

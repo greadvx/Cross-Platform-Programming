@@ -117,6 +117,7 @@ public class Kinder extends Leaner {
     }
     /**
      * Method to attach Kindergarten.
+     * @param kindergartenName - Kindergarten.
      * */
     public void attachNusery(final Kindergarten kindergartenName) {
         this.kindergarten = kindergartenName;

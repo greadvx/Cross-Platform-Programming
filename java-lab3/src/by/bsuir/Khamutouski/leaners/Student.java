@@ -94,6 +94,7 @@ public class Student extends Leaner {
     }
     /**
      * Getter for course.
+     * @return int - course.
      * */
     public int getCourse() {
         return this.course;
@@ -108,6 +109,7 @@ public class Student extends Leaner {
 
     /**
      * Getter for copying.
+     * @return University.
      * */
     public University getUniversity() {
         return this.university;

@@ -289,6 +289,7 @@ public class StudentControlPanelForm extends JFrame {
                     + this.university.marksOfStudent(student));
             courseLabel.setText(COURSE
                     + this.student.getCourse());
+            iqLabel.setText(IQ + this.student.getIQValue());
             lectureButton.setEnabled(true);
             studyButton.setEnabled(false);
 

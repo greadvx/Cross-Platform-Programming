@@ -75,6 +75,10 @@ public class ScholarControlPanelForm extends JFrame {
      * */
     private static final int FINISHED_SCHOOL = 11;
     /**
+     * {@value #HOLIDAY} Consist holiday constant.
+     * */
+    private static final String HOLIDAY = "Линейка";
+    /**
      * {@value #BAD_EXIT} Code of
      * unsuccessful exit operation.
      * */
@@ -240,7 +244,7 @@ public class ScholarControlPanelForm extends JFrame {
         panel.add(marksLabel, params);
 
         JButton tryExamination = new JButton(EXAM_BUTTON);
-        panel.add(tryExamination);
+        //panel.add(tryExamination);
         params.gridx = THREE;
         params.gridy = FIVE;
         tryExamination.setEnabled(false);
@@ -264,24 +268,39 @@ public class ScholarControlPanelForm extends JFrame {
         });
 
         JButton studyButton = new JButton(STUDY_BUTTON);
-        panel.add(studyButton);
+        //panel.add(studyButton);
         params.gridx = TWO;
         params.gridy = FIVE;
+        studyButton.setEnabled(false);
         panel.add(studyButton, params);
 
+        JButton septemberHoliday = new JButton(HOLIDAY);
+        params.gridx = TWO;
+        params.gridy = FOUR;
+        panel.add(septemberHoliday, params);
+
+
         studyButton.addActionListener(action -> {
-            this.thisScholar.studying();
-            marksLabel.setText(MARKS
-                    + this.school.marksOfScholar(thisScholar));
-            formLabel.setText(FORM
-                    + this.thisScholar.getForm());
             if (this.thisScholar.getForm() == FINISHED_SCHOOL) {
                 tryExamination.setEnabled(true);
                 studyButton.setEnabled(false);
+                septemberHoliday.setEnabled(false);
                 school = null;
+                return;
             }
+            septemberHoliday.setEnabled(true);
+            studyButton.setEnabled(false);
+            this.thisScholar.studying();
+            marksLabel.setText(MARKS
+                    + this.school.marksOfScholar(thisScholar));
         });
-
+        septemberHoliday.addActionListener(action -> {
+            septemberHoliday.setEnabled(false);
+            studyButton.setEnabled(true);
+            this.thisScholar.increaseYear();
+            formLabel.setText(FORM
+                    + this.thisScholar.getForm());
+        });
         this.setContentPane(panel);
         this.setVisible(SET_VISIBLE);
     }

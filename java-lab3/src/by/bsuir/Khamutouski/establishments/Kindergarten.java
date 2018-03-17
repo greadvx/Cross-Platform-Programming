@@ -76,6 +76,7 @@ public class Kindergarten extends EstablishmentOfEducation {
     }
     /**
      * Getter of name of kindergarten.
+     * @return String - name.
      * */
     public String getNameOfKindergarten() {
         return nameOfKindergarten;
@@ -114,12 +115,14 @@ public class Kindergarten extends EstablishmentOfEducation {
     }
     /**
      * Getter for copying.
+     * @return ArrayList.
      * */
     public ArrayList<Kinder> getKids() {
         return this.kids;
     }
     /**
      * Method to feed kids.
+     * @param kinder - kinder.
      * */
     public void feedKids(final Kinder kinder) {
         int index = this.searchAroundKids(kinder);

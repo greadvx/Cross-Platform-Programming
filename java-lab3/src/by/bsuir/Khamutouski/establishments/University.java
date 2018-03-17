@@ -25,7 +25,7 @@ public class University extends EstablishmentOfEducation {
      * {@value #PASSING_SCORE} Code of
      * success exit operation.
      * */
-    private static final double PASSING_SCORE = 4.1;
+    private static final double PASSING_SCORE = 1.1;
     /**
      * {@value #NO} Code of
      * not success exit operation.
@@ -63,6 +63,7 @@ public class University extends EstablishmentOfEducation {
     }
     /**
      * Constructor of copying.
+     * @param anotherUniversity - University.
      * */
     public University(final University anotherUniversity) {
         super();
@@ -91,6 +92,7 @@ public class University extends EstablishmentOfEducation {
     /**
      * Method deductLeaner.
      * Makes student deleted from ArrayList.
+     * @param personToDeduct - Student to deduct.
      * */
     public void deductLeaner(final Student personToDeduct) {
         int index = this.searchForStudent(personToDeduct);
@@ -141,12 +143,14 @@ public class University extends EstablishmentOfEducation {
     }
     /**
      * Getter for nameOf university.
+     * @return String - name.
      * */
     public String getNameOfUniversity() {
         return this.nameOfUniversity;
     }
     /**
      * Getter for copying.
+     * @return ArrayList.
      * */
     public ArrayList<Student> getStudents() {
         return this.students;

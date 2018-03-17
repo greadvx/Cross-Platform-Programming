@@ -77,7 +77,6 @@ public class School extends EstablishmentOfEducation {
     }
     /**
      * Method deductLeaner.
-     * Deduct Scholar from the school.
      * @param personToDeduct - scholar to deduct.
      */
     public void deductLeaner(Scholar personToDeduct) {
