@@ -9,3 +9,6 @@ java-lab2: "Classes and Objects"
 
 java-lab3: "Packages"
     Needs to divide java-lab2 into different packages by logical explanation. Needs to add new features.
+
+java–lab4: "Multithreading and synchronization"
+    Needs to create some threads and synchronize them. 
