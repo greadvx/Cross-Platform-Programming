@@ -1,6 +1,5 @@
 package by.bsuir.Khamutouski.system;
 
-
 import org.eclipse.swt.widgets.Text;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,6 +43,15 @@ public final class Checker {
             return true;
         }
     }
+    /**
+     * This is a static method that checks how many symbols
+     * contains in Textfield by RegExp methods.
+     *
+     * @param text TextField.
+     * @param symbol - symbol for search.
+     * @return int - count of symbol.
+     * @since 1.0
+     */
     public static int countOfSymbol(final Text text, final String symbol) {
         String buffer = text.getText();
         Pattern pattern = Pattern.compile(symbol);

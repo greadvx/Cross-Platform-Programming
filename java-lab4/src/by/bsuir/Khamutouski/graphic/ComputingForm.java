@@ -16,36 +16,120 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.MessageBox;
-
+/**
+ * <h1>GUI form computing</h1>
+ *
+ * <p>
+ * This is a class of GUI interface.
+ * Here is created all UI of this form.
+ * As graphical library was used SWT by Eclipse.
+ * </p>
+ *
+ *
+ * @author Yan Khamutouski
+ * @version 1.0
+ * @since 2018-03-27
+ *
+ * */
 public class ComputingForm {
-
+    /**
+     * {@value #WIDTH} int value of width of this form.
+     * */
     private static final int WIDTH = 500;
+    /**
+     * {@value #HEIGHT} int value of height of this
+     * form.
+     * */
     private static final int HEIGHT = 200;
+    /**
+     * {@value #COLUMNS_COUNT} Columns count.
+     * */
     private static final int COLUMNS_COUNT = 2;
+    /**
+     * {@value #ONE} One constant.
+     * */
     private static final int ONE = 1;
 
-    private static final String FORM_NAME = "Линейная свертка";
+    /**
+     * {@value #FORM_NAME} Constant of name of the form.
+     * */
+    private static final String FORM_NAME = "Линейная "
+            + "свертка";
+    /**
+     * {@value #SPACE} Spacer constant.
+     * */
     private static final String SPACE = " ";
+    /**
+     * {@value #SIGNAL} String value constant.
+     * */
     private static final String SIGNAL = "Сигнал :";
+    /**
+     * {@value #SIGNAL_1} String value constant.
+     * */
     private static final String SIGNAL_1 = "Сигнал 1:";
+    /**
+     * {@value #SIGNAL_2} String value constant.
+     * */
     private static final String SIGNAL_2 = "Сигнал 2:";
+    /**
+     * {@value #INDICATION} String value constant.
+     * */
     private static final String INDICATION = "Выберите отсчет";
+    /**
+     * {@value #BACK} String value constant.
+     * */
     private static final String BACK = "Назад";
+    /**
+     * {@value #COMPUTE} String value constant.
+     * */
     private static final String COMPUTE = "Вычислить";
+    /**
+     * {@value #CLEAR} String value constant.
+     * */
     private static final String CLEAR = "Очистить";
+    /**
+     * {@value #TEXT_FIELD_EXCEPTION}
+     * String value constant.
+     * */
     private static final String TEXT_FIELD_EXCEPTION
             = "TextField(Regular expression) error.";
+    /**
+     * {@value #COMBO_BOX_EXCEPTION}
+     * String value constant.
+     * */
     private static final String COMBO_BOX_EXCEPTION
             = "Error of comboBox selection.";
-
+    /**
+     * {@value #MAKE_NOT_EQUAL} Boolean value of equal.
+     * */
     private static final boolean MAKE_NOT_EQUAL = false;
+    /**
+     * {@value #MAKE_EQUAL} Boolean value of equal.
+     * */
     private static final boolean MAKE_EQUAL = true;
+    /**
+     * {@value #H_SPACE} Boolean value of horizontal
+     * spacing.
+     * */
     private static final boolean H_SPACE = false;
+    /**
+     * {@value #V_SPACE} Boolean value of vertical
+     * spacing.
+     * */
     private static final boolean V_SPACE = false;
-
+    /**
+     * Reference of main display.
+     * */
     private Display display;
+    /**
+     * Field used to fill comboBoxes.
+     * */
     private String[] array = {"1", "2", "3", "4", "5"};
 
+    /**
+     * Constructor with params.
+     * @param newDisplay - main display.
+     * */
     public ComputingForm(final Display newDisplay) {
         this.display = newDisplay;
         Shell shell = new Shell(display);
@@ -185,6 +269,7 @@ public class ComputingForm {
         Monitor primary = display.getPrimaryMonitor();
         Rectangle bounds = primary.getBounds();
         Rectangle rect = shell.getBounds();
+
         /** calculate the centre */
         int x = bounds.x + (bounds.width - rect.width) / 2;
         int y = bounds.y + (bounds.height - rect.height) / 2;
