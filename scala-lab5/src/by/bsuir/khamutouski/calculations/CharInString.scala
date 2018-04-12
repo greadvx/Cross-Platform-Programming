@@ -1,6 +1,8 @@
+package by.bsuir.khamutouski.calculations
+
 import scala.annotation.tailrec
 
-  object test extends App {
+  object CountingSymbols {
 
       //using tail-recursive
       def countSym(sym: Char, str: String, len: Int, count: Int): Int = {
@@ -20,6 +22,9 @@ import scala.annotation.tailrec
         recIter(sym, len,  0)
       }
 
+
+//TODO: Refactor this code!
+
       //non tail-recursive
     def countSymRec(sym: Char, str: String, len: Int, count: Int) : Int = {
       def recIter(sym: Char, len: Int, count: Int) : Int = {
@@ -36,9 +41,9 @@ import scala.annotation.tailrec
       0 + recIter(sym, len, 0)
     }
 
-    def simplyNum(list: List[Int]) : List[Int] = {
-      
-    }
+//    def simplyNum(list: List[Int]) : List[Int] = {
+//
+//    }
 
 
 

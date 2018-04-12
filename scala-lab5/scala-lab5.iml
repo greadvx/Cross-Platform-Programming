@@ -9,6 +9,19 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="scala-sdk-2.12.5" level="application" />
+    <orderEntry type="library" exported="" name="scala-sdk-2.12.5" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/swt-4" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/Downloads/swt-4" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Downloads/swt-4" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Downloads/swt-4" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>
