@@ -117,20 +117,20 @@ public class SelectorViewController {
                 SWT.CENTER, H_SPACE, V_SPACE)
         );
         findSymInString.addListener(SWT.Selection, action -> {
-            shell.dispose();
             CharViewController viewController =
                    new CharViewController(display);
 
         });
 
-
-        Button simplyNumsInCollection = new Button(outerGroup, SWT.PUSH);
-        simplyNumsInCollection.setText(SIMPLY_NUM);
-        simplyNumsInCollection.setLayoutData(new GridData(SWT.FILL,
+        Button simplyNumbersInCollection = new Button(outerGroup, SWT.PUSH);
+        simplyNumbersInCollection.setText(SIMPLY_NUM);
+        simplyNumbersInCollection.setLayoutData(new GridData(SWT.FILL,
                 SWT.CENTER, H_SPACE, V_SPACE)
         );
-        simplyNumsInCollection.addListener(SWT.Selection, action -> {
-            //create form here
+        simplyNumbersInCollection.addListener(SWT.Selection, action -> {
+
+            NumsViewController viewController =
+                    new NumsViewController(display);
         });
 
 
