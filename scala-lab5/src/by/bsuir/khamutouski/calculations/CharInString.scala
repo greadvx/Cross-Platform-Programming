@@ -17,7 +17,7 @@ import scala.annotation.tailrec
             }
           }
         }
-        recIter(sym, len,  0)
+        recIter(sym, len,  count)
       }
 
       //non tail-recursive

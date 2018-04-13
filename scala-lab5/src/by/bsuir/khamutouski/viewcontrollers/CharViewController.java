@@ -183,7 +183,7 @@ public class CharViewController {
 
         calculateButton.addListener(SWT.Selection, action -> {
 
-            int countOfSymbols;
+            int countOfSymbols = 0;
 
             try {
                 if (!typeOfRecursion[FIRST_RADIOBUTTON].getSelection() &&
@@ -195,11 +195,13 @@ public class CharViewController {
                     throw new Error("Пустое поле ввода обнаружено!");
                     //tail-rec
                 if (typeOfRecursion[FIRST_RADIOBUTTON].getSelection()) {
-                    countOfSymbols = 0;
-                    CountingSymbols.countSymRec(inputSymbolTextField.getText().charAt(0),
+
+                    countOfSymbols = CountingSymbols.countSym(
+                            inputSymbolTextField.getText().charAt(0),
                             inputStringTextField.getText(),
                             inputStringTextField.getText().length(),
-                            countOfSymbols);
+                            countOfSymbols
+                    );
                     countOfSymbol.setText("Кол-во вхождений: " +
                             String.valueOf(countOfSymbols)
                             + " раз(а).");
@@ -208,7 +210,9 @@ public class CharViewController {
                     countOfSymbols = 0;
 
                     //РЕКУРСИЯ ОБЫЧНАЯ ДЛЯ ПОИСКА СИМВОЛА В СТРОКЕ
-
+                    countOfSymbols = CountingSymbols.countSymRec(inputSymbolTextField.getText().charAt(0),
+                            inputStringTextField.getText(),
+                            inputStringTextField.getText().length(), countOfSymbols);
                     countOfSymbol.setText("Кол-во вхождений: " +
                             String.valueOf(countOfSymbols)
                             + " раз(а).");

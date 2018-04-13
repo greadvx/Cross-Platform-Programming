@@ -1,5 +1,7 @@
 package by.bsuir.khamutouski.viewcontrollers;
 
+import by.bsuir.khamutouski.calculations.SimplyCollections;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -12,7 +14,10 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.MessageBox;
 
+import scala.collection.JavaConverters;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -45,6 +50,11 @@ public class NumsViewController {
      * {@value #COLUMNS_COUNT} Columns count.
      * */
     private static final int COLUMNS_COUNT = 1;
+    /**
+     * {@value #MAX} Elements in collection count.
+     * */
+    private static final int MAX = 10;
+
     /**
      * {@value #STATUS_SUCCESS} Exit status.
      * */
@@ -157,9 +167,9 @@ public class NumsViewController {
                 H_SPACE, V_SPACE)
         );
 
-        Label outputValueOfCollection = new Label(group, SWT.FILL);
-        outputValueOfCollection.setText("");
-        outputValueOfCollection.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
+        Label outputValueOfCollectionLabel = new Label(group, SWT.FILL);
+        outputValueOfCollectionLabel.setText("");
+        outputValueOfCollectionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
                 H_SPACE, V_SPACE)
         );
 
@@ -193,12 +203,43 @@ public class NumsViewController {
                     throw new Error("Не выбран тип рекурсии");
                     //tail-rec
                 if (typeOfRecursion[FIRST_RADIOBUTTON].getSelection()) {
+                    List<Integer> collection =
+                            new ArrayList<>(this.generateCollection()
+                            );
+                    initialValuesOfCollectionLabel.setText(
+                            this.listToStingValues(collection)
+                    );
 
-
+                    List<Integer> outCollection =
+                            new ArrayList<>(
+                                    JavaConverters.bufferAsJavaList(
+                                            SimplyCollections.simplyNumRec(
+                                                    JavaConverters.asScalaBuffer(collection)
+                                            )
+                                    )
+                            );
+                    outputValueOfCollectionLabel.setText(
+                            this.listToStingValues(outCollection)
+                    );
                     //non tail rec
                 } else {
-
-
+                    List<Integer> collection =
+                        new ArrayList<Integer>(this.generateCollection()
+                       );
+                    initialValuesOfCollectionLabel.setText(
+                       this.listToStingValues(collection)
+                    );
+                    List<Integer> outCollection =
+                            new ArrayList<>(
+                                    JavaConverters.bufferAsJavaList(
+                                            SimplyCollections.simplyNumRec(
+                                                    JavaConverters.asScalaBuffer(collection)
+                                            )
+                                    )
+                            );
+                    outputValueOfCollectionLabel.setText(
+                            this.listToStingValues(outCollection)
+                    );
                 }
 
             } catch (final Error exception) {
@@ -229,7 +270,13 @@ public class NumsViewController {
         }
 
     }
-    private String listToStingValues(final ArrayList<Integer> listToConvert) {
+
+    /**
+     * Method to convert List value to String.
+     * @param listToConvert - List
+     * @return String
+     * */
+    private String listToStingValues(final List<Integer> listToConvert) {
 
         String result = new String();
         for (int element : listToConvert) {
@@ -238,13 +285,18 @@ public class NumsViewController {
         }
         return result;
     }
-
-    private ArrayList<Integer> generateCollection() {
-        ArrayList<Integer> list = new ArrayList<>(10);
-        Random random = new Random(99);
-        for (int index = 0; index < 10; index++) {
-            list.add(index, random.nextInt());
+    /**
+     * Method to generate collection for test
+     * @return List -collection
+     * */
+    private List<Integer> generateCollection() {
+        List<Integer> list = new ArrayList<Integer>();
+        Random random = new Random();
+        for (int index = 0; index < MAX; index++) {
+            list.add(index, random.nextInt(MAX));
         }
         return list;
     }
+
+
 }
