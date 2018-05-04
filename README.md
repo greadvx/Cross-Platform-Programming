@@ -18,3 +18,8 @@ BSUIR lab's
   1) of computing how many symbol consists in the string (inputed by user)
   2) of creating List, that consist only simply numbers (initial List consist random values)
   
+  ## scala-lab6: "Operations on collections"
+  * Needs to create functions and ScalaTests for:
+  1) computing how many elements consist Listn(using foldLeft / foldRight)
+  2) reverse pair of elements in List[Int]
+  3) swap key and value in Map[T, U]
