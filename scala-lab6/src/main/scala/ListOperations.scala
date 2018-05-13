@@ -2,7 +2,7 @@
 
 object ListOperations extends App {
 
-  def mySwap(list: List[Int]):List[Int] = {
+  def mySwap[T](list: List[T]):List[T] = {
     if (list.isEmpty) List()
     else {
       if (list.length == 1) List(list.head)

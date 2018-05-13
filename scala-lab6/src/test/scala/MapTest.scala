@@ -1,10 +1,6 @@
 import org.scalatest.FunSuite
 
 class MapTest extends FunSuite{
-//  test("empty") {
-//    assert(MapOperations.reverse(Map()) === Map())
-//  }
-
   test("one pair") {
     assert(MapOperations.reverse(Map(1 -> "one")) === Map("one" -> 1))
   }
